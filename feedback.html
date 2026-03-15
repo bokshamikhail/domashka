@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Обратная связь — Я студент ВШЭ</title>
+  <style>
+    :root { --bg:#0b1220; --card:#111b2e; --text:#e8eefc; --muted:#a9b4cf; --accent:#4da3ff; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background: #0a1020; color: var(--text); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header, nav, main, footer { width: min(900px, 92vw); margin: 0 auto; }
+    header { padding: 28px 0 10px; }
+    nav { padding: 12px 0 18px; display:flex; gap:14px; flex-wrap:wrap; border-bottom:1px solid rgba(255,255,255,.08); }
+    main { padding: 18px 0 28px; }
+    .card { background: rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 18px; }
+    h1 { margin:0 0 8px; font-size: clamp(26px, 3vw, 36px); }
+    p { margin: 10px 0; color: var(--muted); line-height: 1.55; }
+    label { display:block; margin: 12px 0 6px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: rgba(77,163,255,.65); }
+    .row { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 720px){ .row { grid-template-columns: 1fr; } }
+    fieldset { border: 1px dashed rgba(255,255,255,.16); border-radius: 14px; padding: 12px; margin-top: 12px; }
+    legend { padding: 0 8px; color: var(--muted); }
+    .actions { display:flex; gap:10px; flex-wrap: wrap; margin-top: 14px; }
+    button {
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(77,163,255,.20);
+      color: var(--text);
+      cursor: pointer;
+    }
+    button:hover { background: rgba(77,163,255,.28); }
+    .muted { color: var(--muted); font-size: .95rem; }
+    footer { padding: 18px 0 30px; color: var(--muted); border-top:1px solid rgba(255,255,255,.08); }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Обратная связь</h1>
+    <p class="muted">Страница 2: форма с разными полями ввода (text, email, tel, select, radio, checkbox, textarea, file, date).</p>
+  </header>
+
+  <nav aria-label="Основная навигация">
+    <a href="index.html">Главная</a>
+    <a href="feedback.html">Обратная связь</a>
+  </nav>
+
+  <main>
+    <article class="card">
+      <h2 style="margin-top:0;">Форма</h2>
+      <p class="muted">
+        Это статическая форма (без сервера). При желании можно добавить обработку через JS или отправку на backend.
+      </p>
+
+      <form action="#" method="post" enctype="multipart/form-data">
+        <div class="row">
+          <div>
+            <label for="name">Имя</label>
+            <input id="name" name="name" type="text" placeholder="Введите имя" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="name@example.com" required />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="phone">Телефон</label>
+            <input id="phone" name="phone" type="tel" placeholder="+7..." />
+          </div>
+          <div>
+            <label for="date">Дата</label>
+            <input id="date" name="date" type="date" />
+          </div>
+        </div>
+
+        <label for="topic">Тема обращения</label>
+        <select id="topic" name="topic" required>
+          <option value="" selected disabled>Выберите тему</option>
+          <option value="study">Учёба</option>
+          <option value="projects">Проекты</option>
+          <option value="events">Мероприятия</option>
+          <option value="other">Другое</option>
+        </select>
+
+        <fieldset>
+          <legend>Как с вами связаться?</legend>
+          <label><input type="radio" name="contactWay" value="email" required /> Email</label>
+          <label><input type="radio" name="contactWay" value="phone" /> Телефон</label>
+          <label><input type="radio" name="contactWay" value="telegram" /> Telegram</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Дополнительно</legend>
+          <label><input type="checkbox" name="agree" required /> Согласен(на) на обработку данных</label>
+          <label><input type="checkbox" name="subscribe" /> Хочу получать новости</label>
+        </fieldset>
+
+        <label for="message">Сообщение</label>
+        <textarea id="message" name="message" rows="5" placeholder="Напишите сообщение..."></textarea>
+
+        <label for="file">Прикрепить файл</label>
+        <input id="file" name="file" type="file" />
+
+        <div class="actions">
+          <button type="submit">Отправить</button>
+          <button type="reset">Очистить</button>
+        </div>
+
+        <p class="muted">
+          Возврат на главную: <a href="index.html">index.html</a>
+        </p>
+      </form>
+    </article>
+  </main>
+
+  <footer>
+    <small>© 2026 • «Я — студент ВШЭ» • <a href="index.html">Главная</a></small>
+  </footer>
+</body>
+</html>
