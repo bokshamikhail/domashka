@@ -33,12 +33,44 @@
 
   <style>
     /* embedded styles */
+
+/* чат — доп. стили (встроенный <style>) */
+.chatWrap { display: grid; gap: 10px; }
+.chatList{
+  height: 280px;
+  overflow: auto;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.18);
+}
+.msg{ display:flex; flex-direction:column; margin: 8px 0; }
+.msg .meta{ font-size: 12px; opacity: .75; margin-bottom: 4px; }
+.msg .bubble{
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  max-width: 78%;
+}
+.msg.me{ align-items: flex-end; }
+.msg.me .bubble{ background: rgba(77,163,255,.18); }
+.msg.bot{ align-items: flex-start; }
+.msg.bot .bubble{ background: rgba(24,166,122,.12); }
+.chatControls{ display:flex; gap:10px; }
+.chatControls input{ flex: 1 1 auto; }
+.voiceControls{ display:flex; gap:10px; flex-wrap: wrap; align-items:center; }
+.btn{ cursor:pointer; padding: 10px 12px; border-radius: 12px; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06); color: inherit; }
+.btn2{ background: rgba(24,166,122,.14); }
+.btn:disabled{ opacity:.5; cursor:not-allowed; }
+
     h2 { text-transform: none; }               /* элементный */
     .btn:hover { transform: translateY(-1px);} /* класс + псевдокласс */
     main p:first-of-type::first-letter{        /* псевдоэлемент */
       font-size: 1.6em; font-weight: 700; color: rgba(77,163,255,.95);
     }
   </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@latest/ol.css">
+  <script src="https://cdn.jsdelivr.net/npm/ol@latest/dist/ol.js"></script>
 </head>
 
 <body>
@@ -162,10 +194,38 @@
         </blockquote>
       </aside>
     </section>
-  </main>
+  
+    <section id="mapSection" class="card" style="margin: 18px 0;">
+      <h2>Интерактивная карта (OpenLayers)</h2>
+      <p class="muted">Карта на OpenStreetMap через OpenLayers. Пример: центр Москвы + маркер.</p>
+      <div id="map" style="height: 380px; border-radius: 14px; border: 1px solid rgba(255,255,255,.12); overflow:hidden;"></div>
+    </section>
+
+    <section id="chatSection" class="card" style="margin: 18px 0;">
+      <h2>Виртуальный чат с автором</h2>
+      <p class="muted">Чат фиктивный: сообщения никуда не отправляются. Есть автоответы по ключевым словам и голосовые сообщения.</p>
+
+      <div class="chatWrap">
+        <div id="chatList" class="chatList" aria-label="Сообщения чата"></div>
+
+        <div class="chatControls">
+          <input id="chatInput" type="text" placeholder="Напиши сообщение… (например: привет, ВШЭ, проект)" />
+          <button id="sendBtn" class="btn">Отправить</button>
+        </div>
+
+        <div class="voiceControls">
+          <button id="recBtn" class="btn btn2">🎙 Записать голос</button>
+          <button id="voiceSendBtn" class="btn" disabled>Отправить голосовое</button>
+          <span id="voiceStatus" class="muted" style="margin-left:10px;">Голосовые: готово</span>
+        </div>
+      </div>
+    </section>
+
+</main>
 
   <footer class="container">
     <small style="opacity:.9;">© 2026 • Проект для веб-программирования • <a href="feedback.html">Обратная связь</a></small>
   </footer>
+  <script src="app.js" defer></script>
 </body>
 </html>
