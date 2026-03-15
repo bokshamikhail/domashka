@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Я — студент ВШЭ</title>
-  <style>
+  <link rel="stylesheet" href="styles.css">
+<style>
     :root { --bg:#0b1220; --card:#111b2e; --text:#e8eefc; --muted:#a9b4cf; --accent:#4da3ff; }
     * { box-sizing: border-box; }
     body { margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background: #0a1020; color: var(--text); }
@@ -29,27 +30,38 @@
     code { background: rgba(77,163,255,.12); padding: 2px 6px; border-radius: 6px; color: #d7e9ff; }
     .muted { color: var(--muted); }
   </style>
+
+  <style>
+    /* embedded styles */
+    h2 { text-transform: none; }               /* элементный */
+    .btn:hover { transform: translateY(-1px);} /* класс + псевдокласс */
+    main p:first-of-type::first-letter{        /* псевдоэлемент */
+      font-size: 1.6em; font-weight: 700; color: rgba(77,163,255,.95);
+    }
+  </style>
 </head>
 
 <body>
   <!-- Семантическая структура -->
-  <header>
-    <span class="badge">Статический сайт • 2 страницы</span>
-    <h1>Я — студент ВШЭ</h1>
+  <header class="container">
+    <span class="badge" style="font-weight:600;" style="font-weight:600;">Статический сайт • 2 страницы</span>
+    <h1 id="topTitle">Я — студент ВШЭ</h1>
     <p class="muted">
       Это мини-сайт из двух HTML-страниц: главная (информация + изображение) и страница обратной связи (форма).
     </p>
   </header>
 
-  <nav aria-label="Основная навигация">
+  <nav class="site-nav">
+  <div class="container nav-inner" aria-label="Основная навигация">
     <a href="index.html">Главная</a>
     <a href="feedback.html">Обратная связь</a>
     <a href="#about">Обо мне</a>
     <a href="#study">Учёба</a>
     <a href="#facts">Факты</a>
-  </nav>
+    </div>
+</nav>
 
-  <main>
+  <main class="container">
     <section class="grid" aria-label="Контент главной страницы">
       <article class="card">
         <div class="hero">
@@ -101,7 +113,7 @@
             а также строчные и блочные элементы.
           </p>
 
-          <ul>
+          <ul class="pretty">
             <li>Интересуюсь: <span>frontend</span>, <span>backend</span>, <span>UI/UX</span>.</li>
             <li>Практикую: <b>HTML</b>, <i>CSS</i>, <u>семантику</u>, базовый <mark>JavaScript</mark>.</li>
             <li>Люблю делать заметки: <q>маленькие шаги каждый день</q>.</li>
@@ -152,8 +164,8 @@
     </section>
   </main>
 
-  <footer>
-    <small>© 2026 • Проект для веб-программирования • <a href="feedback.html">Обратная связь</a></small>
+  <footer class="container">
+    <small style="opacity:.9;">© 2026 • Проект для веб-программирования • <a href="feedback.html">Обратная связь</a></small>
   </footer>
 </body>
 </html>
